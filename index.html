@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Wikipedia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #f5f5f5;
+            padding: 15px;
+            height: 100vh;
+            border-right: 1px solid #ccc;
+            position: fixed;
+            overflow-y: auto;
+        }
+        #content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 800px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .sidebar-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sidebar-link {
+            display: block;
+            color: #0645AD;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+        .sidebar-link:hover {
+            text-decoration: underline;
+        }
+        #toggleSidebar {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #0645AD;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 200px;
+                position: absolute;
+                left: -200px;
+                transition: 0.3s;
+            }
+            #content {
+                margin-left: 0;
+                padding: 15px;
+            }
+            #toggleSidebar {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button id="toggleSidebar">☰</button>
+
+<div id="sidebar">
+    <div class="sidebar-title">My Blog</div>
+    <a href="#" class="sidebar-link" onclick="loadContent('home')">Home</a>
+    <a href="#" class="sidebar-link" onclick="loadContent('about')">About Me</a>
+    <a href="#" class="sidebar-link" onclick="loadContent('post1')">First Post</a>
+    <a href="#" class="sidebar-link" onclick="loadContent('post2')">Second Post</a>
+</div>
+
+<div id="content">
+    <h1>Welcome to My Personal Wikipedia</h1>
+    <p>Click a link on the left to read my musings on life.</p>
+</div>
+
+<script>
+    function loadContent(page) {
+        const content = {
+            home: "<h1>Welcome</h1><p>Explore my thoughts on life.</p>",
+            about: "<h1>About Me</h1><p>This is where I write about my experiences and ideas.</p>",
+            post1: "<h1>First Blog Post</h1><p>Here’s my first entry about life’s mysteries.</p>",
+            post2: "<h1>Second Blog Post</h1><p>Reflecting on the little things that matter.</p>"
+        };
+
+        document.getElementById("content").innerHTML = content[page] || "<h1>Page Not Found</h1>";
+    }
+
+    document.getElementById("toggleSidebar").addEventListener("click", function () {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.left = sidebar.style.left === "0px" ? "-200px" : "0px";
+    });
+</script>
+
+</body>
+</html>
